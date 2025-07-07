@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nick – Електроніка та мікроконтролери</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a2e0e6b5f9.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
+    <div class="top-bar">
+      <div class="logo">
+        <span class="logo-icon">⚡</span> VoltageNick
+      </div>
+      <button id="themeToggle" title="Перемкнути тему">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
     <h1>Привіт всім, це я <span class="highlight">NICK</span> 👋</h1>
     <p>Мої можливості та вміння:</p>
   </header>
@@ -25,12 +34,42 @@
 
     <section id="contact">
       <h2>Зв’язатися зі мною</h2>
-      <p>Напиши мені в <a href="https://t.me/@x_NICK_1" target="_blank">Telegram</a></p>
+      <div class="contacts">
+        <a href="https://t.me/ТВОЄ_ІМʼЯ_В_ТЕЛЕГРАМІ" target="_blank" class="contact-btn">
+          <i class="fab fa-telegram"></i> Telegram
+        </a>
+        <a href="https://github.com/voltageNick" target="_blank" class="contact-btn">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Nick – Усі права захищено</p>
   </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+
+    const setTheme = (theme) => {
+      document.body.className = theme;
+      localStorage.setItem('theme', theme);
+      toggleBtn.innerHTML = theme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    };
+
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const newTheme = document.body.className === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+    });
+  </script>
 </body>
 </html>
